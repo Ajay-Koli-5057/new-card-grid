@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import { Box, Grid, IconButton, InputAdornment } from "@mui/material";
 import UserProfileCard from "./components/UserProfileCard ";
+import data from "./db.json"
 
 function App() {
   const [searchInput, setSearchInput] = useState("");
@@ -13,13 +14,16 @@ function App() {
   const [navItems, setNavItems] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/users")
-      .then((response) => response.json())
-      .then((data) => setUserData(data));
+    console.log("data", data);
+    setUserData(data.users)
+    setNavItems(data.navItems)
+    // fetch(data)
+    //   .then((response) => response.json())
+    //   .then((data) => setUserData(data), );
 
-    fetch("http://localhost:3001/navItems")
-      .then((response) => response.json())
-      .then((data) => setNavItems(data));
+    // fetch(data)
+    //   .then((response) => response.json())
+    //   .then((data) => setNavItems(data));
   }, []);
 
   const filteredUserData = userData.filter((user) =>
